@@ -1,0 +1,26 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Request Logs{% endblock %}
+
+{% block content %}
+<h1>Request Logs</h1>
+
+<div class="card">
+<table>
+    <tr>
+        <th>IP</th>
+        <th>Path</th>
+        <th>Time</th>
+    </tr>
+
+    {% for log in logs %}
+    <tr>
+        <td>{{ log.ip_address }}</td>
+        <td>{{ log.path }}</td>
+        <td>{{ log.timestamp }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3" style="text-align:center;">No logs found.</td></tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

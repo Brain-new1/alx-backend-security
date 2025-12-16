@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IP Logs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 0;
+            margin: 0;
+        }
+        .header {
+            background: #0056b3;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #0078ff;
+            color: white;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        a.back-btn {
+            display: inline-block;
+            background: #007bff;
+            padding: 10px 15px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        a.back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>IP Logs</h1>
+</div>
+
+<div class="container">
+
+    <a href="{% url 'dashboard' %}" class="back-btn">← Back to Dashboard</a>
+
+    <table>
+        <tr>
+            <th>IP Address</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>User Agent</th>
+            <th>Time</th>
+        </tr>
+
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.ip_address }}</td>
+            <td>{{ log.country }}</td>
+            <td>{{ log.city }}</td>
+            <td>{{ log.user_agent|truncatechars:40 }}</td>
+            <td>{{ log.timestamp }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No logs found.</td></tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

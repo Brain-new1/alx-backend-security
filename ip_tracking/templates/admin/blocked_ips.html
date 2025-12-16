@@ -1,0 +1,143 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}Blocked IPs{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">🚫 Blocked IP Addresses</h1>
+
+<div class="card">
+
+    <div class="card-header">
+        <a class="btn btn-warning" href="{% url 'block_ip' %}">
+            ➕ Block New IP
+        </a>
+    </div>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>IP Address</th>
+                <th>Reason</th>
+                <th>Blocked At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for entry in blocked %}
+            <tr>
+                <td><strong>{{ entry.ip_address }}</strong></td>
+
+                <td>
+                    <span class="tag tag-red">
+                        {{ entry.reason }}
+                    </span>
+                </td>
+
+                <td>{{ entry.blocked_at }}</td>
+
+                <td>
+                    <a class="btn btn-success" href="{% url 'unblock_ip' entry.ip_address %}">
+                        🔓 Unblock
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; padding:20px;">
+                    <em>No blocked IPs.</em>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<style>
+
+/* Page Title */
+.page-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* Card Styling */
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    margin-bottom: 15px;
+}
+
+/* Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.styled-table thead tr {
+    background: #0066cc;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th, 
+.styled-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Hover Row */
+.styled-table tbody tr:hover {
+    background-color: #f5faff;
+}
+
+/* Tag Design */
+.tag {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: white;
+}
+
+.tag-red {
+    background: #cc0000;
+}
+
+/* Button Style */
+.btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.btn-warning {
+    background: #ff9800;
+}
+
+.btn-warning:hover {
+    background: #e68900;
+}
+
+.btn-success {
+    background: #28a745;
+}
+
+.btn-success:hover {
+    background: #1f7c36;
+}
+
+</style>
+
+{% endblock %}

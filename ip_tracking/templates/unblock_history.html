@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unblock History</title>
+</head>
+<body>
+
+<h1>Unblocked IPs History</h1>
+
+<a href="{% url 'blocked_ips' %}">← Back to Blocked IPs</a>
+
+<table border="1">
+    <tr>
+        <th>IP Address</th>
+        <th>Reason</th>
+        <th>Blocked At</th>
+        <th>Unblocked At</th>
+    </tr>
+
+    {% for ip in history %}
+    <tr>
+        <td>{{ ip.ip_address }}</td>
+        <td>{{ ip.reason }}</td>
+        <td>{{ ip.blocked_at }}</td>
+        <td>{{ ip.unblocked_at }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No Unblocked IPs</td></tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

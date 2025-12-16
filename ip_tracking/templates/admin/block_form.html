@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Block IP (Admin)</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f8; }
+        .box {
+            width: 420px;
+            margin: 100px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        button {
+            background: #c0392b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover { background: #a93226; }
+        a {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🚫 Block IP Address</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="ip_address" placeholder="Enter IP address" required>
+        <button type="submit">Block IP</button>
+    </form>
+
+    <a href="{% url 'blocked_ips' %}">← Back to Blocked IPs</a>
+</div>
+
+</body>
+</html>
