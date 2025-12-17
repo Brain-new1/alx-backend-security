@@ -1,23 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome</title>
+    <meta charset="UTF-8">
+    <title>ALX Backend Security</title>
     <style>
-        body { font-family: Arial; background:#f4f4f4; text-align:center; padding-top:80px; }
-        a {
-            background:#0066cc;
-            padding:12px 20px;
-            color:white;
-            text-decoration:none;
-            border-radius:5px;
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px;
+            border-radius: 12px;
+            width: 550px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        p {
+            opacity: 0.85;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        a.btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #1abc9c;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        a.btn:hover {
+            background: #16a085;
         }
     </style>
 </head>
-
 <body>
-    <h1>Welcome to Security Monitoring System</h1>
-    <p>Track IP logs, block suspicious activity, and manage admin controls.</p>
 
-    <a href="{% url 'login' %}">Go to Admin Login</a>
+<div class="hero">
+    <div class="box">
+        <h1>ALX Backend Security System</h1>
+        <p>
+            A Django-based security monitoring platform with
+            IP tracking, rate limiting, request logging,
+            and admin-controlled blocking.
+        </p>
+        <a href="{% url 'login' %}" class="btn">Admin Login</a>
+    </div>
+</div>
+
 </body>
 </html>
