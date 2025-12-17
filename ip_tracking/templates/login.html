@@ -1,54 +1,193 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Login</title>
-    <style>
-        body { background:#e9ecef; font-family:Arial; }
-        .box {
-            width:350px;
-            margin:120px auto;
-            padding:25px;
-            background:white;
-            border-radius:8px;
-            box-shadow:0 3px 10px rgba(0,0,0,0.2);
-        }
-        input {
-            width:100%;
-            padding:10px;
-            margin-top:10px;
-            border:1px solid #ccc;
-            border-radius:5px;
-        }
-        button {
-            width:100%;
-            padding:10px;
-            background:#007bff;
-            border:none;
-            margin-top:15px;
-            border-radius:5px;
-            color:white;
-            font-size:16px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Admin Login | ALX Backend Security</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* NAVBAR */
+.navbar {
+    background: linear-gradient(90deg, #0f3c73, #1e5799);
+    padding: 14px 60px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* HERO BACKGROUND */
+.hero {
+    background:
+        linear-gradient(rgba(15,60,115,0.75), rgba(15,60,115,0.75)),
+        url("{% static 'images/hero-bg.jpg' %}") center/cover no-repeat;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN CARD */
+.login-card {
+    background: white;
+    width: 380px;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.login-card img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.login-card h2 {
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+/* INPUTS */
+.login-card label {
+    text-align: left;
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* BUTTON */
+.login-card button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #1e5799, #0f3c73);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    opacity: 0.95;
+}
+
+/* FORGOT PASSWORD */
+.forgot {
+    margin-top: 15px;
+}
+
+.forgot a {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* MESSAGES */
+.error {
+    background: #fee2e2;
+    color: #7f1d1d;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #6b7280;
+    background: #ffffff;
+}
+</style>
 </head>
 
 <body>
-    <div class="box">
-        <h2>Admin Login</h2>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>ALX Backend Security System</h2>
+    <a href="{% url 'home' %}">Admin</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+
+    <div class="login-card">
+
+        <img src="{% static 'images/shield-icon.png' %}" alt="Security">
+
+        <h2>Login</h2>
 
         {% if messages %}
             {% for msg in messages %}
-                <p style="color:red;">{{ msg }}</p>
+                <div class="error">{{ msg }}</div>
             {% endfor %}
         {% endif %}
 
         <form method="POST">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="admin" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="••••••••" required>
 
             <button type="submit">Login</button>
         </form>
+
+        <div class="forgot">
+            <a href="#">Forgot Password?</a>
+        </div>
     </div>
+
+</div>
+
+<footer>
+    © 2025 ALX Backend Security System. All rights reserved.
+</footer>
+
 </body>
 </html>
